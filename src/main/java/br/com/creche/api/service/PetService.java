@@ -7,6 +7,8 @@ import br.com.creche.api.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PetService {
 
@@ -25,5 +27,9 @@ public class PetService {
             throw new RuntimeException("A creche não aceita cães sem vacina!");
         }
         return petRepository.save(pet);
+    }
+
+    public List<Pet> listarTodosPets(){
+        return petRepository.findAll();
     }
 }
