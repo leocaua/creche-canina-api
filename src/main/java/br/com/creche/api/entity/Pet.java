@@ -1,5 +1,6 @@
 package br.com.creche.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,7 @@ public class Pet {
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("pets")
     private Cliente cliente;
 
     public Long getId() {
@@ -58,5 +60,12 @@ public class Pet {
     }
     public void setCastrado(Boolean castrado) {
         this.castrado = castrado;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 }
