@@ -30,4 +30,18 @@ public class PetController {
                 ResponseEntity.status(200).body(petService.listarTodosPets());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Pet> atualizarPet(@PathVariable Long id, @RequestBody Pet pet){
+        Pet atualizarPet = petService.atualizarPet(id, pet);
+        return
+                ResponseEntity.status(200).body(atualizarPet);
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarPet(@PathVariable Long id){
+        petService.deletarPet(id);
+        return
+                ResponseEntity.noContent().build();
+    }
 }

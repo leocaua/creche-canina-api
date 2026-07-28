@@ -32,4 +32,21 @@ public class PetService {
     public List<Pet> listarTodosPets(){
         return petRepository.findAll();
     }
+
+    public Pet atualizarPet(Long id, Pet petComDadosNovos){
+        Pet petExistente = petRepository.findById(id).get();
+
+        petExistente.setNome(petComDadosNovos.getNome());
+        petExistente.setIdade(petComDadosNovos.getIdade());
+        petExistente.setRaca(petComDadosNovos.getRaca());
+        petExistente.setVacinado(petComDadosNovos.getVacinado());
+        petExistente.setCastrado(petComDadosNovos.getCastrado());
+
+        return petRepository.save(petExistente);
+
+    }
+
+    public void deletarPet(Long id){
+        petRepository.deleteById(id);
+    }
 }
