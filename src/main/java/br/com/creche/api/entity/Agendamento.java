@@ -4,16 +4,20 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
+@Table(name = "agendamentos")
 @Entity
 public class Agendamento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private LocalDate data;
+    private LocalDate dataReserva;
     private Boolean status;
     private BigDecimal valor;
+    private LocalTime horarioEntrada;
+    private LocalTime horarioSaida;
 
     @ManyToOne
     @JoinColumn(name = "pet_id")
@@ -30,11 +34,11 @@ public class Agendamento {
         this.id = id;
     }
 
-    public LocalDate getData() {
-        return data;
+    public LocalDate getDataReserva() {
+        return dataReserva;
     }
-    public void setData(LocalDate data) {
-        this.data = data;
+    public void setDataReserva(LocalDate data) {
+        this.dataReserva = data;
     }
 
     public Boolean getStatus() {
@@ -50,4 +54,19 @@ public class Agendamento {
     public void setValor(BigDecimal valor) {
         this.valor = valor;
     }
+
+    public LocalTime getHorarioEntrada() {
+        return horarioEntrada;
+    }
+    public void setHorarioEntrada(LocalTime horarioEntrada) {
+        this.horarioEntrada = horarioEntrada;
+    }
+
+    public LocalTime getHorarioSaida() {
+        return horarioSaida;
+    }
+    public void setHorarioSaida(LocalTime horarioSaida) {
+        this.horarioSaida = horarioSaida;
+    }
+
 }
