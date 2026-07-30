@@ -27,4 +27,11 @@ public class AgendamentoController {
         return
                 ResponseEntity.ok(agendamentoService.listarTodosAgendamentos());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Agendamento> atualizarAgendamento(@PathVariable Long id, @RequestBody Agendamento agendamento){
+        Agendamento agendamentoAtualizado = agendamentoService.atualizarAgendamento(id, agendamento);
+        return
+                ResponseEntity.status(200).body(agendamentoAtualizado);
+    }
 }
