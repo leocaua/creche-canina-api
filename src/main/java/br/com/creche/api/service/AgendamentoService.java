@@ -5,6 +5,8 @@ import br.com.creche.api.repository.AgendamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AgendamentoService {
 
@@ -13,5 +15,9 @@ public class AgendamentoService {
 
     public Agendamento criarAgendamento(Agendamento agendamento) {
         return agendamentoRepository.save(agendamento);
+    }
+
+    public List<Agendamento> listarTodosAgendamentos() {
+        return agendamentoRepository.findAll();
     }
 }
