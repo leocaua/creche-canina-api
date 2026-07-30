@@ -22,8 +22,8 @@ public class AgendamentoService {
     }
 
     public Agendamento atualizarAgendamento(Long id, Agendamento agendamentoDadosNovos) {
-        Agendamento agendamentoExistente = agendamentoRepository.findById(id).orElseThrow();
-        new RuntimeException("Agendamento não encontrado");
+        Agendamento agendamentoExistente = agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
 
         agendamentoExistente.setDataReserva(agendamentoDadosNovos.getDataReserva());
         agendamentoExistente.setHorarioEntrada(agendamentoDadosNovos.getHorarioEntrada());
@@ -33,5 +33,12 @@ public class AgendamentoService {
 
         return agendamentoRepository.save(agendamentoExistente);
 
+    }
+
+    public void deletarAgendamento(Long id){
+        agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
+
+        agendamentoRepository.deleteById(id);
     }
 }
