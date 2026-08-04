@@ -2,7 +2,8 @@ package br.com.creche.api.entity;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 public class PagamentoPix {
@@ -10,9 +11,9 @@ public class PagamentoPix {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String qrCode;
+    private BigDecimal valor;
     private String status;
-    private LocalDate dataPagamento;
+    private LocalDateTime dataPagamento;
 
     @OneToOne
     @JoinColumn(name = "agendamento_id")
@@ -25,13 +26,6 @@ public class PagamentoPix {
         this.id = id;
     }
 
-    public String getQrCode() {
-        return qrCode;
-    }
-    public void setQrCode(String qrCode) {
-        this.qrCode = qrCode;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -39,10 +33,24 @@ public class PagamentoPix {
         this.status = status;
     }
 
-    public LocalDate getDataPagamento() {
+    public LocalDateTime getDataPagamento() {
         return dataPagamento;
     }
-    public void setDataPagamento(LocalDate dataPagamento) {
+    public void setDataPagamento(LocalDateTime dataPagamento) {
         this.dataPagamento = dataPagamento;
+    }
+
+    public BigDecimal getValor() {
+        return valor;
+    }
+    public void setValor(BigDecimal valor) {
+        this.valor = valor;
+    }
+
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
     }
 }

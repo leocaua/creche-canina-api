@@ -1,10 +1,13 @@
 package br.com.creche.api.service;
 
 import br.com.creche.api.entity.Agendamento;
+import br.com.creche.api.entity.PagamentoPix;
 import br.com.creche.api.repository.AgendamentoRepository;
+import br.com.creche.api.repository.PagamentoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -13,8 +16,20 @@ public class AgendamentoService {
     @Autowired
     private AgendamentoRepository agendamentoRepository;
 
-    public Agendamento criarAgendamento(Agendamento agendamento) {
-        return agendamentoRepository.save(agendamento);
+    @Autowired
+    private PagamentoRepository pagamentoRepository;
+
+    public Agendamento criarAgendamento(Agendamento agendamentoSalvo) {
+        Agendamento agendamentoCriado = agendamentoRepository.saveAndFlush(agendamentoSalvo);
+
+        PagamentoPix newPagamentoPix = new PagamentoPix();
+        newPagamentoPix.setValor(BigDecimal.valueOf(100.00));
+        newPagamentoPix.setStatus("PENDENTE");
+        newPagamentoPix.setAgendamento(agendamentoCriado);
+
+        pagamentoRepository.save(newPagamentoPix);
+
+        return agendamentoCriado;
     }
 
     public List<Agendamento> listarTodosAgendamentos() {
