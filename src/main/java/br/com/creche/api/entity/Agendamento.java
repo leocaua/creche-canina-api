@@ -69,4 +69,17 @@ public class Agendamento {
         this.horarioSaida = horarioSaida;
     }
 
+    public Pet getPet() {
+        return pet;
+    }
+    public void setPet(Pet pet) {
+        this.pet = pet;
+    }
+
+    public Plano getPlano() {
+        return plano;
+    }
+    public void setPlano(Plano plano) {
+        this.plano = plano;
+    }
 }

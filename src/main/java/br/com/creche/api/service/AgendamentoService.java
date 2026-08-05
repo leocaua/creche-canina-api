@@ -20,6 +20,18 @@ public class AgendamentoService {
     private PagamentoRepository pagamentoRepository;
 
     public Agendamento criarAgendamento(Agendamento agendamentoSalvo) {
+
+        long vagasOcupadas = agendamentoRepository.countByDataReserva(agendamentoSalvo.getDataReserva());
+        boolean jaAgendado = agendamentoRepository.existsByPetIdAndDataReserva(agendamentoSalvo.getPet().getId(),agendamentoSalvo.getDataReserva());
+
+        if(vagasOcupadas >= 18){
+            throw new RuntimeException("Capacidade máxima de 18 pets atingida para esta data.");
+        }
+
+        if(jaAgendado){
+            throw new RuntimeException("Este pet já possui um agendamento para esta data.");
+        }
+
         Agendamento agendamentoCriado = agendamentoRepository.saveAndFlush(agendamentoSalvo);
 
         PagamentoPix newPagamentoPix = new PagamentoPix();
