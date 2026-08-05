@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -67,5 +68,11 @@ public class AgendamentoService {
                 .orElseThrow(() -> new RuntimeException("Agendamento não encontrado"));
 
         agendamentoRepository.deleteById(id);
+    }
+
+    public Long consultarVagasDisponiveis(LocalDate data){
+        long vagaDisponivel = agendamentoRepository.countByDataReserva(data);
+        long livre = 18 - vagaDisponivel;
+        return livre;
     }
 }

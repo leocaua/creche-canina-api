@@ -3,9 +3,11 @@ package br.com.creche.api.controller;
 import br.com.creche.api.entity.Agendamento;
 import br.com.creche.api.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -40,5 +42,12 @@ public class AgendamentoController {
         agendamentoService.deletarAgendamento(id);
         return
                 ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/vagas/{data}")
+    public ResponseEntity<Long> consultarVagasDisponivel(@PathVariable @DateTimeFormat (iso = DateTimeFormat.ISO.DATE) LocalDate data ){
+        Long livre = agendamentoService.consultarVagasDisponiveis(data);
+        return
+                ResponseEntity.status(200).body(livre);
     }
 }
