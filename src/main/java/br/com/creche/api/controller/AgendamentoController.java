@@ -50,4 +50,11 @@ public class AgendamentoController {
         return
                 ResponseEntity.status(200).body(livre);
     }
+
+    @GetMapping("/dia/{data}")
+    public ResponseEntity<List<Agendamento>> listarPorDataAgendamento(@PathVariable @DateTimeFormat (iso = DateTimeFormat.ISO.DATE) LocalDate data){
+        List<Agendamento> listaEncontrada = agendamentoService.listarPorData(data);
+        return
+                ResponseEntity.status(200).body(listaEncontrada);
+    }
 }

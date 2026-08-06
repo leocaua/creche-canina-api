@@ -75,4 +75,10 @@ public class AgendamentoService {
         long livre = 18 - vagaDisponivel;
         return livre;
     }
+
+    public List<Agendamento> listarPorData(LocalDate data){
+        List<Agendamento> agendamentoEncontrado = agendamentoRepository.findByDataReserva(data);
+
+        return agendamentoEncontrado;
+    }
 }
