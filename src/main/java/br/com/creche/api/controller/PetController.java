@@ -44,4 +44,11 @@ public class PetController {
         return
                 ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Pet> buscarPorId(@PathVariable Long id){
+        Pet buscaRealizada = petService.buscarPorId(id);
+        return
+                ResponseEntity.status(200).body(buscaRealizada);
+    }
 }

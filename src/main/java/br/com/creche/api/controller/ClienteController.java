@@ -30,5 +30,12 @@ public class ClienteController {
         List<Cliente> clientes = clienteService.listarTodos();
         return ResponseEntity.status(200).body(clientes);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> buscarPorId(@PathVariable Long id){
+        Cliente buscaRealizada = clienteService.buscarPorId(id);
+        return
+                ResponseEntity.status(200).body(buscaRealizada);
+    }
 }
 

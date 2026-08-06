@@ -49,4 +49,11 @@ public class PetService {
     public void deletarPet(Long id){
         petRepository.deleteById(id);
     }
+
+    public Pet buscarPorId(Long id){
+        petRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id não encontrado"));
+
+        return petRepository.save(petRepository.findById(id).get());
+    }
 }

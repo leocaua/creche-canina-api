@@ -37,4 +37,11 @@ public class PlanoService {
         planoRepository.deleteById(id);
 
     }
+
+    public Plano buscarPorId(Long id){
+        planoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id não encontrado"));
+
+        return planoRepository.save(planoRepository.findById(id).get());
+    }
 }

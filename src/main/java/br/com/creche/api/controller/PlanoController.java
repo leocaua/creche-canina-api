@@ -41,4 +41,11 @@ public class PlanoController {
         return
                 ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Plano> buscarPlanoPorId(@PathVariable Long id){
+        Plano buscaRealizada = planoService.buscarPorId(id);
+        return
+                ResponseEntity.status(200).body(buscaRealizada);
+    }
 }
