@@ -37,4 +37,11 @@ public class Rotina {
     public void setHorario(LocalDateTime horario) {
         this.horario = horario;
     }
+
+    public Agendamento getAgendamento() {
+        return agendamento;
+    }
+    public void setAgendamento(Agendamento agendamento) {
+        this.agendamento = agendamento;
+    }
 }

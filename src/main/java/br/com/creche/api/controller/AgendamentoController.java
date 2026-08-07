@@ -57,4 +57,11 @@ public class AgendamentoController {
         return
                 ResponseEntity.status(200).body(listaEncontrada);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Agendamento> buscarPorId(@PathVariable Long id){
+        Agendamento buscaRealizada = agendamentoService.buscarPorId(id);
+        return
+                ResponseEntity.status(200).body(buscaRealizada);
+    }
 }

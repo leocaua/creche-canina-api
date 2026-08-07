@@ -1,10 +1,12 @@
 package br.com.creche.api.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Table(name = "agendamento")
 @Entity
@@ -26,6 +28,10 @@ public class Agendamento {
     @ManyToOne
     @JoinColumn(name = "plano_id")
     private Plano plano;
+
+    @OneToMany(mappedBy = "agendamento")
+    @JsonIgnoreProperties("agendamento")
+    private List<Rotina>  rotinas;
 
     public Long getId() {
         return id;
@@ -81,5 +87,12 @@ public class Agendamento {
     }
     public void setPlano(Plano plano) {
         this.plano = plano;
+    }
+
+    public List<Rotina> getRotinas() {
+        return rotinas;
+    }
+    public void setRotinas(List<Rotina> rotinas) {
+        this.rotinas = rotinas;
     }
 }

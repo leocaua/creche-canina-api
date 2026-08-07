@@ -81,4 +81,12 @@ public class AgendamentoService {
 
         return agendamentoEncontrado;
     }
+
+    public Agendamento buscarPorId(Long id){
+        agendamentoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Id não encontrado"));
+
+        return
+                agendamentoRepository.save(agendamentoRepository.findById(id).get());
+    }
 }
